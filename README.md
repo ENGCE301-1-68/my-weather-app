@@ -1,7 +1,7 @@
 # Weather App with Favorites
 
 โปรเจกต์นี้คือแอปพลิเคชันดูสภาพอากาศแบบไดนามิกที่พัฒนาขึ้นโดยใช้ HTML, CSS และ JavaScript โดยเน้นที่การใช้งานง่ายและมีประสิทธิภาพ ผู้ใช้สามารถค้นหาและเพิ่มเมืองที่สนใจลงในรายการโปรดได้อย่างรวดเร็ว 
-ข้อมูลสภาพอากาศจะถูกดึงมาจาก OpenWeatherMap API เพื่อให้แน่ใจว่าเป็นข้อมูลที่อัปเดตและแม่นยำอยู่เสมอ
+ข้อมูลสภาพอากาศและใช้ API จาก [OpenWeatherMap](https://openweathermap.org/) เพื่อให้แน่ใจว่าเป็นข้อมูลที่อัปเดตและแม่นยำอยู่เสมอ
 - **ลองใช้งาน** [คลิกที่นี่](https://app.netlify.com/projects/my-weather-app-part2/overview)
 
 ---
@@ -28,9 +28,6 @@ my-weather-app/feature/local-storage
 └── index.html
 
 ```
-
-
-
 ---
 ## เทคโนโลยีที่ใช้
 
@@ -40,3 +37,4 @@ my-weather-app/feature/local-storage
 * **CSS**: การออกแบบและจัดสไตล์ที่สวยงาม
 * **JavaScript**: การจัดการการทำงานของแอปพลิเคชัน, การเรียก API และการจัดการข้อมูลใน `localStorage`
 * **OpenWeatherMap API**: ใช้สำหรับดึงข้อมูลสภาพอากาศ
+---
