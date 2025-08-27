@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Weather App with Favorites</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <h1>Weather App</h1>
         <form id="search-form">
-            <input type="text" id="city-input" placeholder="ค้นหาชื่อเมือง..." required>
-            <button type="submit">ค้นหา</button>
+            <input type="text" id="city-input" placeholder="เพิ่มเมืองโปรด..." required>
+            <button type="submit">เพิ่ม</button>
         </form>
-        <div id="weather-info-container" class="weather-info">
-            <!-- ข้อมูลสภาพอากาศจะแสดงที่นี่ -->
+        
+        <div class="header-bar">
+            <h2>เมืองโปรด</h2>
+            <button id="refresh-btn">Refresh 🔄</button>
         </div>
-        <div id="forecast-container" class="forecast-container">
-            <h2>พยากรณ์อากาศล่วงหน้า 5 วัน</h2>
-            <div id="forecast-cards" class="forecast-cards">
-                </div>
-        </div>
-  
+        
+        <div id="favorites-container">
+            </div>
     </div>
     <script src="script.js"></script>
 </body>
