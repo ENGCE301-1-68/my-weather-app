@@ -44,6 +44,7 @@ refreshBtn.addEventListener('click', loadFavoriteCities);
 
 function getFavoriteCities() {
     // ภารกิจที่ 1.1 - ดึงรายชื่อเมืองจาก localStorage
+    // คำใบ้: ใช้ localStorage.getItem('favoriteCities') และ JSON.parse()
     const citiesJSON = localStorage.getItem('favoriteCities');
     // ถ้าไม่มีข้อมูลใน localStorage ให้ return array ว่าง
     return citiesJSON ? JSON.parse(citiesJSON) : [];
@@ -51,7 +52,7 @@ function getFavoriteCities() {
 
 function saveFavoriteCities(cities) {
     // ภารกิจที่ 1.2 - บันทึกรายชื่อเมืองลง localStorage
-    // แปลง array เป็น JSON string แล้วเก็บใน localStorage
+    // คำใบ้: ใช้ localStorage.setItem('favoriteCities', ...) และ JSON.stringify()
     localStorage.setItem('favoriteCities', JSON.stringify(cities));
 }
 
@@ -60,23 +61,24 @@ function loadFavoriteCities() {
     const cities = getFavoriteCities();
     
     // ภารกิจที่ 2 - วนลูปรายชื่อเมืองและแสดงผลสภาพอากาศ
+     // คำใบ้: cities.forEach(city => fetchAndDisplayWeather(city));
     cities.forEach(city => {
         fetchAndDisplayWeather(city);
     });
 }
 
 async function addCityToFavorites(cityName) {
-    // ภารกิจที่ 3 - เพิ่มเมืองใหม่
+    // TODO: ภารกิจที่ 3 - เขียนฟังก์ชันสำหรับเพิ่มเมืองใหม่
     // 1. ดึงรายชื่อเมืองปัจจุบันมา
     let cities = getFavoriteCities();
     
-    // 2. ตรวจสอบว่าเมืองนี้ถูกเพิ่มไปแล้วหรือยัง
+     // 2. ตรวจสอบว่าเมืองนี้ถูกเพิ่มไปแล้วหรือยัง (เพื่อป้องกันการซ้ำ)
     if (!cities.includes(cityName)) {
         // 3. ถ้ายังไม่มี ให้เพิ่มเมืองใหม่เข้าไปใน array
         cities.push(cityName);
         // 4. บันทึก array ใหม่ลง localStorage
         saveFavoriteCities(cities);
-        // 5. แสดงผลใหม่ทั้งหมด
+        // 5. เรียกใช้ loadFavoriteCities() เพื่อแสดงผลใหม่ทั้งหมด
         loadFavoriteCities();
     } else {
         // ถ้ามีเมืองนี้อยู่แล้ว ให้แจ้งเตือน
@@ -85,7 +87,7 @@ async function addCityToFavorites(cityName) {
 }
 
 function removeCityFromFavorites(cityName) {
-    // ภารกิจที่ 4.1 - ลบเมืองออกจากรายการโปรด
+    // TODO: ภารกิจที่ 4.1 - เขียน Logic ส่วนนี้
     // 1. ดึงรายชื่อเมืองปัจจุบันมา
     let cities = getFavoriteCities();
     
@@ -95,7 +97,7 @@ function removeCityFromFavorites(cityName) {
     // 3. บันทึก array ใหม่ลง localStorage
     saveFavoriteCities(cities);
     
-    // 4. แสดงผลใหม่ทั้งหมด
+    // 4. เรียกใช้ loadFavoriteCities() เพื่อแสดงผลใหม่ทั้งหมด
     loadFavoriteCities();
 }
 
@@ -122,7 +124,7 @@ async function fetchAndDisplayWeather(city) {
             <div class="text-right">
                 <p class="temp">${main.temp.toFixed(1)}°C</p>
             </div>
-            <button class="remove-btn">ลบ</button>
+            <button class="remove-btn">X</button>
         `;
         
         favoritesContainer.appendChild(card);
@@ -132,11 +134,7 @@ async function fetchAndDisplayWeather(city) {
         const card = document.createElement('div');
         card.className = 'weather-card';
         card.setAttribute('data-original-city', city); // เก็บชื่อต้นฉบับไว้แม้ error
-        card.innerHTML = `
-            <h3>${city}</h3>
-            <p class="error">${error.message}</p>
-            <button class="remove-btn">ลบ</button>
-        `;
+        card.innerHTML = `<h3>${city}</h3><p class="error">${error.message}</p><button class="remove-btn">X</button>`;
         favoritesContainer.appendChild(card);
     }
 }
